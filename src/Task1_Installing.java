@@ -1,4 +1,4 @@
-package knhel7.jd14.javacore14.task131;
+//package knhel7.jd14.javacore14.task131;
 
 // Задача 1: Установка
 //  1. В папке Games создайте несколько директорий: src, res, savegames, temp.
@@ -74,19 +74,3 @@ public class Task1_Installing {
     }
 
 }
-
-//    System.out.println("Имя файла: " + myFile.getName());
-//    System.out.println("Родительский каталог: " + myFile.getParent());
-//    System.out.println("Размер файла: " + myFile.length());
-//    if (myFile.exists())
-//        System.out.println("Файл существует");
-//    else
-//        System.out.println("Файл не был найден");
-//    if (myFile.canRead())
-//        System.out.println("Файл может быть прочитан");
-//    else
-//        System.out.println("Файл не может быть прочитан");
-//    if (myFile.canWrite())
-//        System.out.println("Файл может быть записан");
-//    else
-//        System.out.println("Файл не может быть записан");

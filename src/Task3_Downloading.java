@@ -1,4 +1,4 @@
-package knhel7.jd14.javacore14.task131;
+//package knhel7.jd14.javacore14.task131;
 
 // Задача 3: Загрузка
 //  1. Произвести распаковку архива в папке savegames.

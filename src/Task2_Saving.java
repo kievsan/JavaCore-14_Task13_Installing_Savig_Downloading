@@ -1,4 +1,4 @@
-package knhel7.jd14.javacore14.task131;
+//package knhel7.jd14.javacore14.task131;
 
 // Задача 2: Сохранение
 //  1. Создать три экземпляра класса GameProgress.
