@@ -1,10 +1,10 @@
 //package knhel7.jd14.javacore14.task131;
 
-// Задача 2: Сохранение
-//  1. Создать три экземпляра класса GameProgress.
-//  2. Сохранить сериализованные объекты GameProgress в папку savegames из предыдущей задачи.
-//  3. Созданные файлы сохранений из папки savegames запаковать в архив zip.
-//  4. Удалить файлы сохранений, лежащие вне архива.
+// Р—Р°РґР°С‡Р° 2: РЎРѕС…СЂР°РЅРµРЅРёРµ
+//  1. РЎРѕР·РґР°С‚СЊ С‚СЂРё СЌРєР·РµРјРїР»СЏСЂР° РєР»Р°СЃСЃР° GameProgress.
+//  2. РЎРѕС…СЂР°РЅРёС‚СЊ СЃРµСЂРёР°Р»РёР·РѕРІР°РЅРЅС‹Рµ РѕР±СЉРµРєС‚С‹ GameProgress РІ РїР°РїРєСѓ savegames РёР· РїСЂРµРґС‹РґСѓС‰РµР№ Р·Р°РґР°С‡Рё.
+//  3. РЎРѕР·РґР°РЅРЅС‹Рµ С„Р°Р№Р»С‹ СЃРѕС…СЂР°РЅРµРЅРёР№ РёР· РїР°РїРєРё savegames Р·Р°РїР°РєРѕРІР°С‚СЊ РІ Р°СЂС…РёРІ zip.
+//  4. РЈРґР°Р»РёС‚СЊ С„Р°Р№Р»С‹ СЃРѕС…СЂР°РЅРµРЅРёР№, Р»РµР¶Р°С‰РёРµ РІРЅРµ Р°СЂС…РёРІР°.
 // https://github.com/netology-code/jd-homeworks/blob/master/files/task2/README.md
 
 import java.io.*;
@@ -19,24 +19,24 @@ public class Task2_Saving {
         Logger logger = Logger.INSTANCE;
         logger.log("Do Task-2: Saving!");
 
-//        1. Создать три экземпляра класса GameProgress:
+//        1. РЎРѕР·РґР°С‚СЊ С‚СЂРё СЌРєР·РµРјРїР»СЏСЂР° РєР»Р°СЃСЃР° GameProgress:
         List<GameProgress> gameInstanceList = List.of(
                 new GameProgress(90, 10, 2, 49.6),
                 new GameProgress(55, 22, 4, 85.8),
                 new GameProgress(31, 17, 3, 65.5));
 
-//        2. Сохранить сериализованные объекты GameProgress в папку 'savegames':
+//        2. РЎРѕС…СЂР°РЅРёС‚СЊ СЃРµСЂРёР°Р»РёР·РѕРІР°РЅРЅС‹Рµ РѕР±СЉРµРєС‚С‹ GameProgress РІ РїР°РїРєСѓ 'savegames':
         saveGame(gameInstanceList, Main.SAVE_PATCH, Main.SAVE_FILE);
 
-//        3. Созданные файлы сохранений из папки savegames запаковать в архив zip:
+//        3. РЎРѕР·РґР°РЅРЅС‹Рµ С„Р°Р№Р»С‹ СЃРѕС…СЂР°РЅРµРЅРёР№ РёР· РїР°РїРєРё savegames Р·Р°РїР°РєРѕРІР°С‚СЊ РІ Р°СЂС…РёРІ zip:
         String[] splitFilePattern = Main.SAVE_FILE.split("[\\s,.]+");
         List<String> filesToPack = new ArrayList<>();
         List<File> filesToDelete = new ArrayList<>();
-        File dir = new File(Main.SUPER_PATCH + Main.SAVE_PATCH); // определяем объект для каталога
-        if (dir.exists() && dir.isDirectory()) {                        // если объект представляет каталог
+        File dir = new File(Main.SUPER_PATCH + Main.SAVE_PATCH); // РѕРїСЂРµРґРµР»СЏРµРј РѕР±СЉРµРєС‚ РґР»СЏ РєР°С‚Р°Р»РѕРіР°
+        if (dir.exists() && dir.isDirectory()) {                        // РµСЃР»Рё РѕР±СЉРµРєС‚ РїСЂРµРґСЃС‚Р°РІР»СЏРµС‚ РєР°С‚Р°Р»РѕРі
             logger.log("Browse the '" + dir + "' directory and select files to add to the archive.");
-            for (File file : dir.listFiles()) {             // получаем все вложенные объекты в каталоге
-                if (matchFile(file, splitFilePattern)) {    // проверяем: это файл и он подходит по шаблону?
+            for (File file : dir.listFiles()) {             // РїРѕР»СѓС‡Р°РµРј РІСЃРµ РІР»РѕР¶РµРЅРЅС‹Рµ РѕР±СЉРµРєС‚С‹ РІ РєР°С‚Р°Р»РѕРіРµ
+                if (matchFile(file, splitFilePattern)) {    // РїСЂРѕРІРµСЂСЏРµРј: СЌС‚Рѕ С„Р°Р№Р» Рё РѕРЅ РїРѕРґС…РѕРґРёС‚ РїРѕ С€Р°Р±Р»РѕРЅСѓ?
                     filesToPack.add(file.toString());
                     filesToDelete.add(file);
                     logger.log("\tFile " + file + " will be added to the archive and then deleted.");
@@ -46,7 +46,7 @@ public class Task2_Saving {
         if (!filesToPack.isEmpty())
             zipFiles(filesToPack, Main.SUPER_PATCH + Main.SAVE_PATCH);
 
-//        4. Удалить файлы сохранений, лежащие вне архива:
+//        4. РЈРґР°Р»РёС‚СЊ С„Р°Р№Р»С‹ СЃРѕС…СЂР°РЅРµРЅРёР№, Р»РµР¶Р°С‰РёРµ РІРЅРµ Р°СЂС…РёРІР°:
         Main.deleteFiles(filesToDelete);
 
         logger.log("Have been done Task-2!");
@@ -88,9 +88,9 @@ public class Task2_Saving {
 
     public static boolean matchFile(File file, String[] splitFilePattern) {
         String[] splitFileName = file.getName().split("[\\s,.]+");
-        return  (file.isFile() &&                                   // проверим, является ли объект файлом
-                splitFileName[0].contains(splitFilePattern[0]) &&   // и имя подходит по шаблону
-                splitFileName[1].equals(splitFilePattern[1]));      // и расширения совпадают
+        return  (file.isFile() &&                                   // РїСЂРѕРІРµСЂРёРј, СЏРІР»СЏРµС‚СЃСЏ Р»Рё РѕР±СЉРµРєС‚ С„Р°Р№Р»РѕРј
+                splitFileName[0].contains(splitFilePattern[0]) &&   // Рё РёРјСЏ РїРѕРґС…РѕРґРёС‚ РїРѕ С€Р°Р±Р»РѕРЅСѓ
+                splitFileName[1].equals(splitFilePattern[1]));      // Рё СЂР°СЃС€РёСЂРµРЅРёСЏ СЃРѕРІРїР°РґР°СЋС‚
     }
 
     public static void zipFiles(List<String> filesToPack,
@@ -113,10 +113,10 @@ public class Task2_Saving {
                     String shotFileName = fileName.substring(fileName.lastIndexOf(Main.SEP) + 1);
                     ZipEntry entry = new ZipEntry(shotFileName);
                     zout.putNextEntry(entry);
-                    // считываем содержимое файла в массив byte:
+                    // СЃС‡РёС‚С‹РІР°РµРј СЃРѕРґРµСЂР¶РёРјРѕРµ С„Р°Р№Р»Р° РІ РјР°СЃСЃРёРІ byte:
                     byte[] buffer = new byte[fis.available()];
                     fis.read(buffer);
-                    zout.write(buffer); // добавляем содержимое к архиву
+                    zout.write(buffer); // РґРѕР±Р°РІР»СЏРµРј СЃРѕРґРµСЂР¶РёРјРѕРµ Рє Р°СЂС…РёРІСѓ
                     logger.log("\tThe game file '" + fileName + "' has been archived.");
                 } catch (Exception ex) {
                     System.out.println(ex.getMessage());
@@ -124,7 +124,7 @@ public class Task2_Saving {
                             "metod 'zipFiles' class 'Task2_Saving'!");
                 }
             }
-            zout.closeEntry();  // закрываем текущую запись для новой записи
+            zout.closeEntry();  // Р·Р°РєСЂС‹РІР°РµРј С‚РµРєСѓС‰СѓСЋ Р·Р°РїРёСЃСЊ РґР»СЏ РЅРѕРІРѕР№ Р·Р°РїРёСЃРё
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
             logger.log("Exception error in ZipOutputStream(" + zipFullName +

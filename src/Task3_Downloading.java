@@ -1,9 +1,9 @@
 //package knhel7.jd14.javacore14.task131;
 
-// Задача 3: Загрузка
-//  1. Произвести распаковку архива в папке savegames.
-//  2. Произвести считывание и десериализацию одного из разархивированных файлов save.dat.
-//  3. Вывести в консоль состояние сохранненой игры.
+// Р—Р°РґР°С‡Р° 3: Р—Р°РіСЂСѓР·РєР°
+//  1. РџСЂРѕРёР·РІРµСЃС‚Рё СЂР°СЃРїР°РєРѕРІРєСѓ Р°СЂС…РёРІР° РІ РїР°РїРєРµ savegames.
+//  2. РџСЂРѕРёР·РІРµСЃС‚Рё СЃС‡РёС‚С‹РІР°РЅРёРµ Рё РґРµСЃРµСЂРёР°Р»РёР·Р°С†РёСЋ РѕРґРЅРѕРіРѕ РёР· СЂР°Р·Р°СЂС…РёРІРёСЂРѕРІР°РЅРЅС‹С… С„Р°Р№Р»РѕРІ save.dat.
+//  3. Р’С‹РІРµСЃС‚Рё РІ РєРѕРЅСЃРѕР»СЊ СЃРѕСЃС‚РѕСЏРЅРёРµ СЃРѕС…СЂР°РЅРЅРµРЅРѕР№ РёРіСЂС‹.
 // https://github.com/netology-code/jd-homeworks/blob/master/files/task3/README.md
 
 import java.io.*;
@@ -41,9 +41,9 @@ public class Task3_Downloading {
             String fileName;
             File realFile;
             while ((entry = zin.getNextEntry()) != null) {
-                fileName = entry.getName();     // получим название файла
+                fileName = entry.getName();     // РїРѕР»СѓС‡РёРј РЅР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р°
                 realFile = new File(destinationDirectory + fileName);
-                        // распаковка:
+                        // СЂР°СЃРїР°РєРѕРІРєР°:
                 FileOutputStream fout = new FileOutputStream(realFile);
                 for (int c = zin.read(); c != -1; c = zin.read()) {
                     fout.write(c);
@@ -65,9 +65,9 @@ public class Task3_Downloading {
         Logger logger = Logger.INSTANCE;
 
         GameProgress gameProgress = null;
-        try (FileInputStream  fis = new FileInputStream(objectStatusFile);    // откроем входной поток для чтения файла
+        try (FileInputStream  fis = new FileInputStream(objectStatusFile);    // РѕС‚РєСЂРѕРµРј РІС…РѕРґРЅРѕР№ РїРѕС‚РѕРє РґР»СЏ С‡С‚РµРЅРёСЏ С„Р°Р№Р»Р°
              ObjectInputStream ois = new ObjectInputStream(fis)) {
-            gameProgress = (GameProgress) ois.readObject();             // десериализуем объект и скастим его в класс
+            gameProgress = (GameProgress) ois.readObject();             // РґРµСЃРµСЂРёР°Р»РёР·СѓРµРј РѕР±СЉРµРєС‚ Рё СЃРєР°СЃС‚РёРј РµРіРѕ РІ РєР»Р°СЃСЃ
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
             logger.log("Exception error in ObjectInputStream, metod 'openProgress' class 'Task3_Saving'!");
