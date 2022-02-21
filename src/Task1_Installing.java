@@ -38,17 +38,15 @@ public class Task1_Installing {
         logger.log("Have been done Task-1!");
     }
 
-    protected static boolean createFileEntity(String directory,
-                                              String fileEntityName,
+    protected static boolean createFileEntity(String directory, String fileEntityName,
                                               boolean isDirectory) throws IOException {
         Logger logger = Logger.INSTANCE;
 
         File newFileEntity = new File(directory + fileEntityName);
         boolean isCreated = isDirectory ? newFileEntity.mkdir() : newFileEntity.createNewFile();
         if (isCreated) {
-            logger.log("\tThe '" + newFileEntity +
-                    (isDirectory ? Main.SEP + "' directory " : "' file ") +
-                    "has just been created.");
+            logger.log("\tThe '" + newFileEntity + 
+		    (isDirectory ? Main.SEP + "' directory " : "' file ") + "has just been created.");
             return true;
         }
         logger.log("\tFailed to create the '" + newFileEntity +
@@ -66,8 +64,8 @@ public class Task1_Installing {
 
     protected static LinkedHashMap<String, List<String>> getTaskForFiles() {
         LinkedHashMap<String, List<String>> mapOfTasks = new LinkedHashMap<>();
-        mapOfTasks.put(Main.SUPER_PATCH + "src" + Main.SEP + "main" + Main.SEP,
-                List.of("Main.java", "Utils.java"));
+        mapOfTasks.put(Main.SUPER_PATCH + "src" + Main.SEP + "main" + Main.SEP, 
+		List.of("Main.java", "Utils.java"));
         mapOfTasks.put(Main.SUPER_PATCH + Main.TEMP_PATCH,
                 List.of(Main.TEMP_FILE));
         return mapOfTasks;
