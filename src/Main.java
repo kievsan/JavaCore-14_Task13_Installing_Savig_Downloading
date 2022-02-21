@@ -12,10 +12,10 @@ import java.io.*;
 import java.util.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
-
     static final Scanner SCAN = new Scanner(System.in, "cp1251");
 
     static final String SEP = File.separator;
@@ -28,26 +28,41 @@ public class Main {
     static final String ZIP_FILE = "save_level.zip";
 
     public static void main(String[] args) throws IOException {
+        Locale.setDefault(new Locale("ru", "RU"));
         Logger logger = Logger.INSTANCE;
         logger.log("Launch the program!");
 
-        System.out.println("\nTask 1. Starting! Press any key...");
+        System.out.println("\nTask 1. Starting! Press Enter...");
         SCAN.nextLine();
         Task1_Installing.task1_Installing();    // Задача 1. Установка
 
-        System.out.println("\nTask 2. Starting! Press any key...");
+        System.out.println("\nTask 2. Starting! Press Enter...");
         SCAN.nextLine();
         Task2_Saving.task2_Saving();            // Задача 2. Сохранение
 
-        System.out.println("\nTask 3. Starting! Press any key...");
+        System.out.println("\nTask 3. Starting! Press Enter...");
         SCAN.nextLine();
         Task3_Downloading.task3_Downloading();  // Задача 3. Загрузка
-
-
 
         logger.log("Completing the program!");
         logger.close();
         SCAN.close();
+    }
+
+    public static void deleteFiles(List<File> filesToDelete) throws IOException {
+        Logger logger = Logger.INSTANCE;
+        if (!filesToDelete.isEmpty()) {
+            logger.log("The game files are deleting...");
+            for (File file : filesToDelete) {
+                if (file.exists()) {
+                    if (file.delete())
+                        logger.log("\t'" + file + "' has been deleted.");
+                    else
+                        logger.log("\t'" + file + "' hasn't been deleted.");
+                } else
+                    logger.log("\t'" + file +  "' not found!");
+            }
+        }
     }
 
 }

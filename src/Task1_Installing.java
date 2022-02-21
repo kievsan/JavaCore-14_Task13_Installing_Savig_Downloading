@@ -46,12 +46,12 @@ public class Task1_Installing {
         File newFileEntity = new File(directory + fileEntityName);
         boolean isCreated = isDirectory ? newFileEntity.mkdir() : newFileEntity.createNewFile();
         if (isCreated) {
-            logger.log("The '" + newFileEntity +
+            logger.log("\tThe '" + newFileEntity +
                     (isDirectory ? Main.SEP + "' directory " : "' file ") +
                     "has just been created.");
             return true;
         }
-        logger.log("Failed to create the '" + newFileEntity +
+        logger.log("\tFailed to create the '" + newFileEntity +
                 (isDirectory ? Main.SEP + "' directory!." : "' file!."));
         return false;
     }

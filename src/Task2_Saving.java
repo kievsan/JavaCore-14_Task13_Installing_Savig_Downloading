@@ -39,7 +39,7 @@ public class Task2_Saving {
                 if (matchFile(file, splitFilePattern)) {    // проверяем: это файл и он подходит по шаблону?
                     filesToPack.add(file.toString());
                     filesToDelete.add(file);
-                    logger.log("File " + file + " will be added to the archive and then deleted.");
+                    logger.log("\tFile " + file + " will be added to the archive and then deleted.");
                 }
             }
         }
@@ -47,7 +47,7 @@ public class Task2_Saving {
             zipFiles(filesToPack, Main.SUPER_PATCH + Main.SAVE_PATCH);
 
 //        4. Удалить файлы сохранений, лежащие вне архива:
-        deleteFiles(filesToDelete);
+        Main.deleteFiles(filesToDelete);
 
         logger.log("Have been done Task-2!");
     }
@@ -76,7 +76,7 @@ public class Task2_Saving {
                  ObjectOutputStream oos = new ObjectOutputStream(fos)) {
                 Object obj = gameInstanceList.get(i-1);
                 oos.writeObject(obj);
-                logger.log("Game object has just been saved to '" +
+                logger.log("\tGame object has just been saved to '" +
                         realFileName + "'.");
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
@@ -117,7 +117,7 @@ public class Task2_Saving {
                     byte[] buffer = new byte[fis.available()];
                     fis.read(buffer);
                     zout.write(buffer); // добавляем содержимое к архиву
-                    logger.log("The game file '" + fileName + "' has been archived.");
+                    logger.log("\tThe game file '" + fileName + "' has been archived.");
                 } catch (Exception ex) {
                     System.out.println(ex.getMessage());
                     logger.log("Exception error in FileInputStream, " +
@@ -129,22 +129,6 @@ public class Task2_Saving {
             System.out.println(ex.getMessage());
             logger.log("Exception error in ZipOutputStream(" + zipFullName +
                     "), metod 'zipFiles' class 'Task2_Saving'!");
-        }
-    }
-
-    public static void deleteFiles(List<File> filesToDelete) throws IOException {
-        Logger logger = Logger.INSTANCE;
-        if (!filesToDelete.isEmpty()) {
-            logger.log("Temp files are deleting...");
-            for (File file : filesToDelete) {
-                if (file.exists()) {
-                    if (file.delete())
-                        logger.log("Temp file '" + file + "' has been deleted.");
-                    else
-                        logger.log("Temp file '" + file + "' hasn't been deleted.");
-                } else
-                    logger.log("File '" + file +  "' not found!");
-            }
         }
     }
 
