@@ -6,7 +6,7 @@
 //  3. В подкаталоге main создайте два файла: Main.java, Utils.java.
 //  4. В каталог res создайте три директории: drawables, vectors, icons.
 //  5. В директории temp создайте файл temp.txt.
-//  Файл temp.txt будет использован для записиси в него информации
+//  Файл temp.txt будет использован для записи в него информации
 //  об успешном или неуспешном создании файлов и директорий.
 // https://github.com/netology-code/jd-homeworks/blob/master/files/task1/README.md
 
