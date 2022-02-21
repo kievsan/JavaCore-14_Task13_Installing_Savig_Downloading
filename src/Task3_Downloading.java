@@ -18,7 +18,7 @@ public class Task3_Downloading {
         Logger logger = Logger.INSTANCE;
         logger.log("Do Task-3: Downloading!");
 
-        List<File> listObjectStatusFile = openZip(Main.SUPER_PATCH + Main.ZIP_PATCH + Main.ZIP_FILE);
+        List<File> listObjectStatusFile = openZip(Main.ZIP_FILE_FULLNAME);
         logger.log("The game objects from files is being restored...'");
         for (File file : listObjectStatusFile) {
             GameProgress objectGameProgress = openProgress(file);

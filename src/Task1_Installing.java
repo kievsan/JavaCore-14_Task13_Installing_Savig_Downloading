@@ -18,39 +18,40 @@ import java.util.Map;
 
 public class Task1_Installing {
 
-    public static void task1_Installing() throws IOException {
-        Logger logger = Logger.INSTANCE;
-        logger.log("Do Task-1: Installing!");
+    public static void task1_Installing() {
+        Main.SIMPLE_LOGGER.append("Do Task-1: Installing!\n");
 
         for (Map.Entry<String, List<String>> entry : getTaskForDirectories().entrySet()) {
-            for (String newDir : entry.getValue())
+            for (String newDir : entry.getValue()) {
                 createFileEntity(entry.getKey(), newDir + Main.SEP, true);
+            }
         }
         getTaskForFiles().forEach((superDirectory, listNewFiles) -> {
             for (String newFile: listNewFiles) {
-                try {
-                    createFileEntity(superDirectory, newFile, false);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                createFileEntity(superDirectory, newFile, false);
             }
         });
-        logger.log("Have been done Task-1!");
+        Main.SIMPLE_LOGGER.append("Have been done Task-1!\n");
     }
 
-    protected static boolean createFileEntity(String directory, String fileEntityName,
-                                              boolean isDirectory) throws IOException {
-        Logger logger = Logger.INSTANCE;
-
+    protected static boolean createFileEntity(String directory,
+                                              String fileEntityName,
+                                              boolean isDirectory) {
         File newFileEntity = new File(directory + fileEntityName);
-        boolean isCreated = isDirectory ? newFileEntity.mkdir() : newFileEntity.createNewFile();
+        boolean isCreated = false;
+        try {
+            isCreated = isDirectory ? newFileEntity.mkdir() : newFileEntity.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         if (isCreated) {
-            logger.log("\tThe '" + newFileEntity + 
-		    (isDirectory ? Main.SEP + "' directory " : "' file ") + "has just been created.");
+            Main.SIMPLE_LOGGER.append("\tThe '" + newFileEntity +
+                    (isDirectory ? Main.SEP + "' directory " : "' file ") +
+                    "has just been created.\n");
             return true;
         }
-        logger.log("\tFailed to create the '" + newFileEntity +
-                (isDirectory ? Main.SEP + "' directory!." : "' file!."));
+        Main.SIMPLE_LOGGER.append("\tFailed to create the '" + newFileEntity +
+                (isDirectory ? Main.SEP + "' directory!." : "' file!") + "\n");
         return false;
     }
 
@@ -64,10 +65,10 @@ public class Task1_Installing {
 
     protected static LinkedHashMap<String, List<String>> getTaskForFiles() {
         LinkedHashMap<String, List<String>> mapOfTasks = new LinkedHashMap<>();
-        mapOfTasks.put(Main.SUPER_PATCH + "src" + Main.SEP + "main" + Main.SEP, 
-		List.of("Main.java", "Utils.java"));
+        mapOfTasks.put(Main.SUPER_PATCH + "src" + Main.SEP + "main" + Main.SEP,
+                List.of("Main.java", "Utils.java"));
         mapOfTasks.put(Main.SUPER_PATCH + Main.TEMP_PATCH,
-                List.of(Main.TEMP_FILE));
+                List.of(Main.TEMP_FILE_NAME));
         return mapOfTasks;
     }
 

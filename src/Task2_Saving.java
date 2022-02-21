@@ -69,15 +69,19 @@ public class Task2_Saving {
         String fileExtension = splitFileName[1];
 
         for (int i = 1; i <= gameInstanceList.size(); i++) {
-            String realFileName = Main.SUPER_PATCH + dirName + fileNameWithoutExtension + i + "." + fileExtension;
+            String realFileName = Main.SUPER_PATCH + dirName +
+                    fileNameWithoutExtension + i +
+                    "." + fileExtension;
             try (FileOutputStream fos = new FileOutputStream(realFileName);
                  ObjectOutputStream oos = new ObjectOutputStream(fos)) {
                 Object obj = gameInstanceList.get(i-1);
                 oos.writeObject(obj);
-                logger.log("\tGame object has just been saved to '" + realFileName + "'.");
+                logger.log("\tGame object has just been saved to '" +
+                        realFileName + "'.");
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
-                logger.log("Exception error in ObjectOutputStream(" + realFileName +"), metod 'saveGame' class 'Task2_Saving'!");
+                logger.log("Exception error in ObjectOutputStream(" + realFileName +
+                        "), metod 'saveGame' class 'Task2_Saving'!");
             }
         }
     }
@@ -92,7 +96,7 @@ public class Task2_Saving {
     public static void zipFiles(List<String> filesToPack,
                                 String zipAbsPatch) throws IOException {
         Logger logger = Logger.INSTANCE;
-        String zipFullName = zipAbsPatch + Main.ZIP_FILE;
+        String zipFullName = zipAbsPatch + Main.ZIP_FILE_NAME;
         logger.log("The game files are archiving to file '" + zipFullName +  "'...");
 
         try (ZipOutputStream zout = new ZipOutputStream(new FileOutputStream(zipFullName)))
@@ -100,7 +104,8 @@ public class Task2_Saving {
             for (String fileName: filesToPack) {
                 File file = new File(fileName);
                 if (!file.exists() || !file.isFile()) {
-                    logger.log("File '" + fileName +  "' not found... " + "It hasn't been archived.");
+                    logger.log("File '" + fileName +  "' not found... " +
+                            "It hasn't been archived.");
                     continue;
                 }
                 try (FileInputStream fis = new FileInputStream(fileName))
@@ -115,13 +120,15 @@ public class Task2_Saving {
                     logger.log("\tThe game file '" + fileName + "' has been archived.");
                 } catch (Exception ex) {
                     System.out.println(ex.getMessage());
-                    logger.log("Exception error in FileInputStream, " + "metod 'zipFiles' class 'Task2_Saving'!");
+                    logger.log("Exception error in FileInputStream, " +
+                            "metod 'zipFiles' class 'Task2_Saving'!");
                 }
             }
             zout.closeEntry();  // закрываем текущую запись для новой записи
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
-            logger.log("Exception error in ZipOutputStream(" + zipFullName +"), metod 'zipFiles' class 'Task2_Saving'!");
+            logger.log("Exception error in ZipOutputStream(" + zipFullName +
+                    "), metod 'zipFiles' class 'Task2_Saving'!");
         }
     }
 

@@ -3,6 +3,7 @@
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Date;
 
 public enum Logger {
     INSTANCE;
@@ -12,7 +13,7 @@ public enum Logger {
     static {
         try {
             logStream = new BufferedWriter(new FileWriter(
-                    Main.SUPER_PATCH + Main.TEMP_PATCH + Main.TEMP_FILE, true));
+                    Main.TEMP_FILE_FULLNAME, true));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -34,3 +35,4 @@ public enum Logger {
         logStream.close();
     }
 }
+
