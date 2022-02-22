@@ -45,13 +45,18 @@ public class Task1_Installing {
             e.printStackTrace();
         }
         if (isCreated) {
-            Main.SIMPLE_LOGGER.append("\tThe '" + newFileEntity +
-                    (isDirectory ? Main.SEP + "' directory " : "' file ") +
-                    "has just been created.\n");
+            Main.SIMPLE_LOGGER
+                    .append("\tThe '")
+                    .append(newFileEntity)
+                    .append(isDirectory ? Main.SEP + "' directory " : "' file ")
+                    .append("has just been created.\n");
             return true;
         }
-        Main.SIMPLE_LOGGER.append("\tFailed to create the '" + newFileEntity +
-                (isDirectory ? Main.SEP + "' directory!." : "' file!") + "\n");
+        Main.SIMPLE_LOGGER
+                .append("\tFailed to create the '")
+                .append(newFileEntity)
+                .append(isDirectory ? Main.SEP + "' directory!." : "' file!")
+                .append("\n");
         return false;
     }
 

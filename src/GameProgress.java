@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 
 public class GameProgress implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     private int health;
